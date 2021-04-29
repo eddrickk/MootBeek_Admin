@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// Class Adapter untuk adapter Room List
 class RoomListAdminRecyclerViewAdapter (data : MutableList<Room>) : RecyclerView.Adapter<RoomListAdminRecyclerViewAdapter.Holder>(){
     private var RoomData = data
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
