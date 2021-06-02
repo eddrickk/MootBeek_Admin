@@ -1,5 +1,7 @@
 package com.example.meetbookadmin
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.LayoutInflater
@@ -10,8 +12,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 // Class Adapter untuk adapter Room List
-class RoomListAdminRecyclerViewAdapter (data : MutableList<Room>) : RecyclerView.Adapter<RoomListAdminRecyclerViewAdapter.Holder>(){
+class RoomListAdminRecyclerViewAdapter (data : MutableList<Room>, context: Context, interfaceData: InterfaceData) : RecyclerView.Adapter<RoomListAdminRecyclerViewAdapter.Holder>(){
     private var RoomData = data
+    private var Ctxt = context
+    private var interfaceData: InterfaceData = interfaceData
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val roomtitle = itemView.findViewById<TextView>(R.id.MeetRoomTitle)
         val roomcap = itemView.findViewById<TextView>(R.id.MeetRoomCap)
@@ -34,6 +38,11 @@ class RoomListAdminRecyclerViewAdapter (data : MutableList<Room>) : RecyclerView
         val imageBytes = Base64.decode(RoomData.get(position).image, Base64.DEFAULT)
         val decodeImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
         holder.roomimage.setImageBitmap(decodeImage)
+
+        holder.itemView.setOnClickListener {
+            val model = RoomData.get(position)
+            interfaceData.sendRoomData(model.id,model.title,model.capacity,model.image)
+        }
     }
 
     override fun getItemCount(): Int {

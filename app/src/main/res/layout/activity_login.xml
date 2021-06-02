@@ -76,6 +76,11 @@
                 android:textColor="@color/white"
                 android:textFontWeight="400"
                 android:textSize="18dp" />
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
