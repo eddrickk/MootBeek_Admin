@@ -60,8 +60,8 @@ class MainPresenter (setView : MainVPInterface, context: Context) {
         view.init(mainModel)
     }
 
-    fun readRoomItems() : MutableList<Room>{
-        var roomList : MutableList<Room> = mutableListOf()
+    fun readRoomItems() : MutableList<Rooms>{
+        var roomList : MutableList<Rooms> = mutableListOf()
         roomsqlitedb = roomDBHelper(context)
         doAsync {
             roomList = roomsqlitedb?.getRoom()!!.toMutableList()

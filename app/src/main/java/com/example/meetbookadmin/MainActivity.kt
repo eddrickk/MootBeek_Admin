@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
     private lateinit var RoomListAdminAdapter : RoomListAdminRecyclerViewAdapter
     private lateinit var interfaceData: InterfaceData
     // Buat List untuk Room yang akan ditampilkan pada recyclerview
-    private var RoomItems : MutableList<Room> = mutableListOf(
+    private var RoomItems : MutableList<Rooms> = mutableListOf(
 
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // panggil db elper
+        // panggil db Helper
         roomsqlitedb = roomDBHelper(this)
         /*doAsync {
             roomsqlitedb?.beginRoomTransaction()
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
         //tmp.image = imageStr
 
         // Jalankan fungsi add room dari db Helper
-        roomsqlitedb?.addRoom(Room(0,title,cap,""))
+        roomsqlitedb?.addRoom(Rooms(0,title,cap,""))
     }
 
     // Fungsi untuk generate string gambar

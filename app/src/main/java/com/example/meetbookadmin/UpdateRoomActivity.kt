@@ -38,7 +38,7 @@ class UpdateRoomActivity : AppCompatActivity() {
                 // Mulai transaction
                 roomsqlitedb?.beginRoomTransaction()
                 // Jalankan fungsi untuk update data room dari DB Helper
-                roomsqlitedb?.updateRoomTransaction(Room(roomID,updateTitle,updateCap,updateImg))
+                roomsqlitedb?.updateRoomTransaction(Rooms(roomID,updateTitle,updateCap,updateImg))
                 // Nyatakan transaction selesai
                 roomsqlitedb?.successRoomTransaction()
                 // Transaction selesai

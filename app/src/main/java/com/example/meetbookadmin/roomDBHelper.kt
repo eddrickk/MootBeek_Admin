@@ -68,8 +68,8 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
         }
         return roomList
     }*/
-    fun getRoom(): MutableList<Room> {
-        val roomList : MutableList<Room> = mutableListOf()
+    fun getRoom(): MutableList<Rooms> {
+        val roomList : MutableList<Rooms> = mutableListOf()
         val SELECT_ROOM = "SELECT *" +
                 " FROM ${roomDB.roomTable.TABLE_ROOM}"
         val db = this.readableDatabase
@@ -99,12 +99,12 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
                     cursor.getColumnIndex(roomDB.roomTable.COLUMN_IMAGE)
                 )
 
-                roomList.add(Room(roomID,roomTitle,roomCap,roomImage))
+                roomList.add(Rooms(roomID,roomTitle,roomCap,roomImage))
             } while (cursor.moveToNext())
         }
         return roomList
     }
-    fun addRoom(room: Room): Long {
+    fun addRoom(room: Rooms): Long {
         val db = this.writableDatabase
         val contentValues = ContentValues().apply {
             put(roomDB.roomTable.COLUMN_TITLE, room.title)
@@ -118,7 +118,7 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
         db.close()
         return success
     }
-    fun updateRoom(room: Room): Int {
+    fun updateRoom(room: Rooms): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues().apply {
             put(roomDB.roomTable.COLUMN_TITLE, room.title)
@@ -153,7 +153,7 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
     }
 
     // Buat fungsi transactional untuk add room
-    fun addRoomTransaction(room: Room){
+    fun addRoomTransaction(room: Rooms){
         // Buat query untuk insert room ke table
         var sqlString = "INSERT INTO ${roomDB.roomTable.TABLE_ROOM} " +
                 "(${roomDB.roomTable.COLUMN_TITLE}" +
@@ -175,7 +175,7 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
     }
 
     // Buat fungsi transactional untuk update room
-    fun updateRoomTransaction(room: Room){
+    fun updateRoomTransaction(room: Rooms){
         // Buat query untuk update data room
         var sqlString = "UPDATE ${roomDB.roomTable.TABLE_ROOM} SET " +
                 "${roomDB.roomTable.COLUMN_TITLE} = ?," +
@@ -198,8 +198,8 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
         statement.clearBindings()
     }
     // Buat fungsi untuk read data room dengan mengembalikan List Room yang telah dibaca
-    fun getRoomTransaction(): MutableList<Room>{
-        val roomList : MutableList<Room> = mutableListOf()
+    fun getRoomTransaction(): MutableList<Rooms>{
+        val roomList : MutableList<Rooms> = mutableListOf()
         // Buat query untuk select semua data dari table room
         val SELECT_ROOM = "SELECT *" +
                 " FROM ${roomDB.roomTable.TABLE_ROOM}"
@@ -237,7 +237,7 @@ class roomDBHelper(context: Context) : SQLiteOpenHelper(
                         cursor.getColumnIndex(roomDB.roomTable.COLUMN_IMAGE)
                 )
                 // Tambahkan data-data yang telah dibaca ke list Room
-                roomList.add(Room(roomID,roomTitle,roomCap,roomImage))
+                roomList.add(Rooms(roomID,roomTitle,roomCap,roomImage))
             } while (cursor.moveToNext()) // Lanjut ke data selanjutnya dalam cursor
         }
         // Kembalikan list Room

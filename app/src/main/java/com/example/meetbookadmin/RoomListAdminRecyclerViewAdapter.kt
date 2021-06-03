@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 // Class Adapter untuk adapter Room List
-class RoomListAdminRecyclerViewAdapter (data : MutableList<Room>, context: Context, interfaceData: InterfaceData) : RecyclerView.Adapter<RoomListAdminRecyclerViewAdapter.Holder>(){
+class RoomListAdminRecyclerViewAdapter (data : MutableList<Rooms>, context: Context, interfaceData: InterfaceData) : RecyclerView.Adapter<RoomListAdminRecyclerViewAdapter.Holder>(){
     private var RoomData = data
     private var Ctxt = context
     private var interfaceData: InterfaceData = interfaceData
