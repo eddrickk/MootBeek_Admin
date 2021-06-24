@@ -30,7 +30,7 @@ class MainPresenter (setView : MainVPInterface, context: Context) {
         // Ubah kembali model item dengan hasil dari fungsi checkCapacity
         //mainModel.item = checkCapacity(capacity,TempRoom)
 
-        var data = Room(0,nama,capacity.toInt())
+        var data = Room(0, nama,capacity.toInt())
         if (capacity.toInt() > 0){
             if (addRoomItems(data) != -1L){
                 var result = readRoomItems()
@@ -84,24 +84,26 @@ class MainPresenter (setView : MainVPInterface, context: Context) {
     fun initRoomItems(resources: Resources){
         var imageString = initImage(resources)
         var roomList : MutableList<Room> = mutableListOf(
-            Room(0, "Room 1A",1,imageString),
-            Room(1, "Room 2A",1,imageString),
-            Room(2, "Room 3A",1,imageString),
-            Room(3, "Room 4A",1,imageString),
-            Room(4, "Room 5A",1,imageString),
-            Room(5, "Room 6A",1,imageString),
-            Room(6, "Room 7A",1,imageString),
-            Room(7, "Room 8A",1,imageString),
-            Room(8, "Room 9A",1,imageString),
-            Room(9, "Room 1B",1,imageString),
-            Room(10, "Room 2B",1,imageString),
-            Room(11, "Room 3B",1,imageString),
-            Room(12, "Room 4B",1,imageString),
-            Room(13, "Room 5B",1,imageString),
-            Room(14, "Room 6B",1,imageString),
-            Room(15, "Room 7B",1,imageString),
-            Room(16, "Room 8B",1,imageString),
-            Room(17, "Room 9B",1,imageString)
+            /*Room( "Room 1A",1,imageString),
+            Room( "Room 2A",1,imageString),
+            Room("Room 3A",1,imageString),
+            Room("Room 4A",1,imageString),
+            Room( "Room 5A",1,imageString),
+            Room( "Room 6A",1,imageString),
+            Room( "Room 7A",1,imageString),
+            Room("Room 8A",1,imageString),
+            Room( "Room 9A",1,imageString),
+            Room("Room 1B",1,imageString),
+            Room( "Room 2B",1,imageString),
+            Room( "Room 3B",1,imageString),
+            Room("Room 4B",1,imageString),
+            Room( "Room 5B",1,imageString),
+            Room( "Room 6B",1,imageString),
+            Room("Room 7B",1,imageString),
+            Room( "Room 8B",1,imageString),
+            Room( "Room 9B",1,imageString)
+
+             */
         )
         roomsqlitedb = roomDBHelper(context)
         // Tambahkan Ruangan awal untuk list ruangan

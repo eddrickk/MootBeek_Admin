@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream
 class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
     // Inisialisasi db helper untuk room
     var roomsqlitedb : roomDBHelper? = null
+    //lateinit var controller: FirebaseController
     private lateinit var imageStr : String
     // Buat Adapter untuk room list
     private lateinit var RoomListAdminAdapter : RoomListAdminRecyclerViewAdapter
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        /*controller = FirebaseController(this)
+        controller.getRoomList()*/
         // panggil db Helper
         roomsqlitedb = roomDBHelper(this)
         /*doAsync {
@@ -83,6 +86,7 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
     // Buat fungsi untuk membaca data table room
     fun readData(){
         doAsync {
+            //RoomItems = controller.getRoomList()
             RoomItems.clear()
             // Mulai transaction
             roomsqlitedb?.beginRoomTransaction()
@@ -92,6 +96,8 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
             roomsqlitedb?.successRoomTransaction()
             // Transaction selesai
             roomsqlitedb?.endRoomTransaction()
+
+
             uiThread {
                 // Jalankan fungsi updateAdapter() bila selesai melakukan transaction
                 updateAdapter()
@@ -124,6 +130,17 @@ class MainActivity : AppCompatActivity(), InterfaceData/*, MainVPInterface*/ {
 
     // Buat fungsi untuk add room baru
     private fun addItem(title: String, cap: Int){
+        /*var lastId = controller.getLastID()
+        var newId = lastId + 1
+        doAsync {
+            controller.insertRoom(Room(newId,title,cap,imageStr))
+            uiThread {
+                Toast.makeText(this@MainActivity,"Room Added",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+         */
+
         //var tmp = Rooms()
         //tmp.title = title
         //tmp.capacity = cap

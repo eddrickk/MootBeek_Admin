@@ -12,11 +12,18 @@ import org.jetbrains.anko.uiThread
 
 class UpdateRoomActivity : AppCompatActivity() {
     var roomsqlitedb : roomDBHelper? = null
+    //lateinit var controller: FirebaseController
+    private var oldTitle = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_room)
+
+        /*controller = FirebaseController(this)
+        controller.getRoomList()*/
+
         roomsqlitedb = roomDBHelper(this)
         var intentExtra = intent
+        oldTitle = intentExtra.getStringExtra(EXTRA_ROOM_TITLE)!!
         doAsync{
             val imageresult=decodeStrImg(intentExtra.getStringExtra(EXTRA_ROOM_IMAGE))
             uiThread {
@@ -35,6 +42,7 @@ class UpdateRoomActivity : AppCompatActivity() {
             var updateImg = intentExtra.getStringExtra(EXTRA_ROOM_IMAGE) ?: ""
 
             doAsync {
+                //controller.updateRoom(oldTitle,roomID,updateTitle,updateCap,updateImg)
                 // Mulai transaction
                 roomsqlitedb?.beginRoomTransaction()
                 // Jalankan fungsi untuk update data room dari DB Helper
@@ -43,6 +51,8 @@ class UpdateRoomActivity : AppCompatActivity() {
                 roomsqlitedb?.successRoomTransaction()
                 // Transaction selesai
                 roomsqlitedb?.endRoomTransaction()
+
+
                 uiThread {
                     // Selesaikan activity
                     finishThisActivity()

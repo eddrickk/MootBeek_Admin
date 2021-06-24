@@ -13,8 +13,9 @@ import org.jetbrains.anko.uiThread
 import java.io.ByteArrayOutputStream
 
 class LoginActivity : AppCompatActivity() {
-    val user = "Admin"
-    val pass = "123"
+    private val user = "Admin"
+    private val pass = "123"
+    //lateinit var controller: FirebaseController
     // inisialisasi Db helper untuk room
     var roomsqlitedb : roomDBHelper? = null
     private var imageString : String = ""
@@ -44,6 +45,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        initImage()
+        /*controller = FirebaseController(this)
+        controller.getRoomList()
+        controller.insertRoom(Room(0,"Room 1A",1,imageString))
+
+         */
         // panggil db helper
         roomsqlitedb = roomDBHelper(this)
         // panggil sharedpref
@@ -56,6 +64,8 @@ class LoginActivity : AppCompatActivity() {
             // Jalankan fungsi transaction untuk add room
             additemTransaction()
         }
+
+
 
         LoginButtonAdm.setOnClickListener {
             var intentToMain = Intent(this, MainActivity::class.java)
@@ -113,6 +123,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun makeToast(text : String) {
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show()
     }
@@ -130,7 +142,7 @@ class LoginActivity : AppCompatActivity() {
         }
         return false
     }
-    private fun additem(){
+    /*private fun additem(){
         LoginButtonAdm.isEnabled = false
         progressbar.progress = 0
         progressbar.max = roomList.size
@@ -149,6 +161,8 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
+
+     */
     fun initImage() : String{
         //Decode Gambar menjadi bitmap dan set image pada imageview
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.meetroom1)
